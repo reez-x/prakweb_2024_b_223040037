@@ -7,7 +7,7 @@
   </div>
     <div class="row">
         <div class="row-lg-6">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+        <button type="button" class="btn btn-primary tombolTambahData" data-toggle="modal" data-target="#formModal">
         Tambah data mahasiswa
         </button>
         <br>
@@ -17,6 +17,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <?= $mhs['nama']; ?>
                         <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id'] ?>"  class="badge text-bg-primary " onclick="return confirm('yakin ?');">hapus</a>
+                        <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id'] ?>"  class="badge text-bg-warning tampilModalUbah" data-toggle="modal" data-target="#formModal" data-id="<?=$mhs['id']; ?>">edit</a>
                         <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id'] ?>"  class="badge text-bg-primary ">detail</a>
                     </li>
                 <?php endforeach; ?>
@@ -33,7 +34,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="judulModal">Tambah data mahasiswa</h5>
+        <h5 class="modal-title" id="formModalLabel">Tambah data mahasiswa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -41,6 +42,7 @@
       <div class="modal-body">
         
             <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
+              <input type="hidden" name="id" id="id">
             <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama">
